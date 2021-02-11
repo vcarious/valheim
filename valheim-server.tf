@@ -15,8 +15,9 @@ provider "aws" {
 resource "aws_instance" "valheim" {
   ami           = "ami-03d315ad33b9d49c4"
   instance_type = "t2.large"
-  key_name = "valheim_key"
- 
+  key_name      = "valheim_key"
+  user_data     = templatefile("init.tpl")
+
 }
 
 resource "aws_security_group" "steam_traffic" {
