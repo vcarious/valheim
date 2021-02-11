@@ -16,6 +16,10 @@ resource "aws_instance" "valheim" {
   ami           = "ami-03d315ad33b9d49c4"
   instance_type = "t2.large"
   key_name = "valheim_key"
+  provisioner "file" {
+    source = "start_server.sh"
+    destination = "/home/steam/valheim/start_server.sh"
+  }
 }
 
 resource "aws_security_group" "steam_traffic" {
@@ -50,11 +54,3 @@ resource "aws_security_group" "steam_traffic" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
-resource "aws_instance" "valheim" {
-  provisioner "file" {
-    source = "start_server.sh"
-    destination = "/home/steam/valheim/start_server.sh"
-  }
-}
-
