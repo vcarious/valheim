@@ -1,2 +1,2 @@
 # valheim
-valheim dedicated server configuration
+Valheim dedicated server setup (t3a.large EC2)
