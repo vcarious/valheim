@@ -28,16 +28,16 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"]
 }
 
-resource "aws_instance" "valheim-restore" {
+resource "aws_instance" "valheim" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3a.large"
-  key_name      = "valheim_key_restore"
+  key_name      = "valheim_key"
   #TODO: add init.sh to user_data for automated install
   #user_data     = templatefile("init.tpl", {})
 
 }
 
-resource "aws_security_group" "steam_traffic_restore" {
+resource "aws_security_group" "steam_traffic" {
   name        = "steam_traffic_restore"
   description = "Allows steam and ssh access"
 
@@ -70,6 +70,6 @@ resource "aws_security_group" "steam_traffic_restore" {
   }
 }
 resource "aws_network_interface_sg_attachment" "sg_attachment" {
-  security_group_id    = aws_security_group.steam_traffic_restore.id
-  network_interface_id = aws_instance.valheim-restore.primary_network_interface_id
+  security_group_id    = aws_security_group.steam_traffic.id
+  network_interface_id = aws_instance.valheim.primary_network_interface_id
 }
