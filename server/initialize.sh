@@ -22,6 +22,5 @@ export LD_LIBRARY_PATH=./linux64:$LD_LIBRARY_PATH
 export SteamAppId=892970
 cd /home/steam/valheim/
 echo "starting server PRESS CTRL-C to exit"
-#TODO: bind pw
 ./valheim_server.x86_64 -name $server_name -port 2456 -world $world_name -password $password
 export LD_LIBRARY_PATH=$templdpath
